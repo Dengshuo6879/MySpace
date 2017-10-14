@@ -1,0 +1,13 @@
+//在本页面调用
+$('#id').click(function () {
+  var url = 'xxx';
+  $(`<a href=${url}>Download</a>`)[0].click();
+});
+
+*********************************
+
+//新开一个标签页下载
+$('#id').click(function () {
+  var url = 'xxx';
+  window.open(url, '_blank');
+});

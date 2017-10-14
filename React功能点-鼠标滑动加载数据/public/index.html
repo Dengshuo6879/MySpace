@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dva Demo</title>
+  <link rel="stylesheet" href="/index.css" />
+  <style>
+    #root>div>div>div>ul>li>.ant-timeline-item-content{
+      top:-65px;
+    }
+    #root>div>div>div>ul>li:last-child>.ant-timeline-item-tail{
+      height:0
+    }
+    #root>div>div>div>ul>li>.ant-timeline-item-head-blue{
+      border:none;
+    }
+    #root>div>div>div>ul>li>.ant-timeline-item-head{
+      width:12px;
+      height:12px;
+      background-color: #ccc;
+    }
+    .itemOpacity{
+       margin-top:10px;
+       margin-left:15px;
+     }
+    .itemAddOpacity{
+      margin-top:10px;
+      margin-left:15px;
+      opacity: 1;
+      animation: AddWith .3s;
+    }
+    @keyframes AddWith {
+      0% {opacity:.5;}
+      25% {opacity: .75}
+      50% {opacity:.85;}
+      100% { opacity:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="/index.js"></script>
+
+</body>
+</html>

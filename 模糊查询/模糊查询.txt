@@ -1,0 +1,25 @@
+//被查询的数据格式[{},{},...]
+<input type="text" id="searchFriend" onkeyup="filterFriend()">
+
+
+var allList=[
+	{userId: 10011, userName: "小邓", userStatus: "Y", userConversationType: "1"},
+	{userId: 10021, userName: "小王", userStatus: "Y", userConversationType: "1"},
+	{userId: 10025, userName: "小李", userStatus: "Y", userConversationType: "1"},
+	{userId: 10072, userName: "234", userStatus: "Y", userConversationType: "3"},
+	{userId: 10119, userName: "123", userStatus: "Y", userConversationType: "3"}
+];
+function filterFriend() {
+  allList.map((item)=>{
+    item.userId=`${item.userId}`;   //将userId数字转化为字符串
+  })
+  var word=$('#searchFriend').val();
+  if(word!=''){
+    var value = "";
+    for(var i = 0;i < allList.length;i++){
+      if(word!="" && (allList[i].userName.match(word+".*")||allList[i].userId.match(word+".*")) != null){
+       console.log(allList[i]);
+	  }
+    }
+  }
+}

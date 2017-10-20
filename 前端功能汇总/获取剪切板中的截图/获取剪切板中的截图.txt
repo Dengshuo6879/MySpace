@@ -1,0 +1,51 @@
+function imgReader(item) {
+  var blob = item.getAsFile(),
+    reader = new FileReader();
+
+  reader.onload = function (e) {
+    var img = new Image();
+
+    img.src = e.target.result;
+	*************************************************************
+	//计算图片大小
+    var str = img.src.substring(22);
+    var equalIndex = str.indexOf('=');
+    if (str.indexOf('=') > 0) {
+      str = str.substring(0, equalIndex);
+    }
+    var strLength = str.length;
+    var fileLength = strLength - (strLength / 8) * 2;
+    var fileSize = Math.round(fileLength / 1024 * 100) / 100;
+    console.log(fileSize);
+	**************************************************************
+    
+    document.boby.appendChild(img);
+  };
+  reader.readAsDataURL(blob);
+};
+document.getElementById('inputTxt').addEventListener('paste', function (e) {
+  var clipboardData = e.clipboardData,
+    i = 0,
+    items, item, types;
+  if (clipboardData) {
+    items = clipboardData.items;
+
+    if (!items) {
+      return;
+    }
+
+    item = items[0];
+    types = clipboardData.types || [];
+
+    for (; i < types.length; i++) {
+      if (types[i] === 'Files') {
+        item = items[i];
+        break;
+      }
+    }
+
+    if (item && item.kind === 'file' && item.type.match(/^image\//i)) {
+      imgReader(item);
+    }
+  }
+});

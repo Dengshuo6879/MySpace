@@ -1,2 +1,0 @@
-//设置滚动条在最底部
-$('#id').scrollTop($('#id')[0].scrollHeight);

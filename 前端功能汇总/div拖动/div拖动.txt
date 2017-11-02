@@ -1,0 +1,37 @@
+window.onload = function () {
+  var div1 = document.getElementById("top");
+  div1.onmousedown = function (ev) {
+    var oevent = ev || event;
+
+    var distanceX = oevent.clientX - div1.parentNode.offsetLeft;
+    var distanceY = oevent.clientY - div1.parentNode.offsetTop;
+
+    document.onmousemove = function (ev) {
+      var oevent = ev || event;
+      styleLeft = oevent.clientX - distanceX;
+      styleTop = oevent.clientY - distanceY;
+      if (styleLeft <= -250) {
+        styleLeft = -250;
+      }
+      if (styleLeft >= (document.body.clientWidth/2)) {
+        styleLeft = document.body.clientWidth/2;
+      }
+      if (styleTop <= 0) {
+        styleTop = 0;
+      }
+      if (styleTop >= 350) {
+        styleTop = 350;
+      }
+      div1.parentNode.style.left = styleLeft + 'px';
+      div1.parentNode.style.top = styleTop + 'px';
+    };
+    document.onmouseup = function () {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+  };
+};
+//点div中的元素不可拖
+$('#searchFriend,.fa-search,.affix,.close-container,.sysInfo-container').mousedown(function(e){
+  e.stopPropagation();
+});

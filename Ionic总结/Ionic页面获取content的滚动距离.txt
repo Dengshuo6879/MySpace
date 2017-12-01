@@ -1,0 +1,30 @@
+一.引入相关模块
+	import {ViewChild,AfterViewInit} from '@angular/core';
+	import {Content} from 'ionic-angular';
+	
+二.标注@ViewChild()
+	export class ProductPage { 
+    @ViewChild(Content) content: Content;
+    //括号中的值在html页面中标注的时候，名称不能其他属性相同。如该文件已经有一个pnavs的变量，则会报错。
+    @ViewChild('one') stickone;
+    @ViewChild('two') sticketwo;
+    @ViewChild('three') stickhree;
+}
+
+	
+三.在html文件中标记
+	<ion-list #one>
+	<ion-list #two>
+	<ion-list #three >
+	
+四.对页面的滑动进行监听
+	ngAfterViewInit(){
+		this.content.ionScroll.subscribe(($event: any) => {
+			this.ngzone.run(() => {//如果在页面滑动过程中对数据进行修改，页面是不会重构的。所以在对应的操作中需要使用如下方法，使页面能够重构。
+				$event.scrollTop;//当前滑动的距离
+				this.stickone.nativeElement//获取html中标记为one的元素
+				this.sticktwo.nativeElement//获取html中标记为two的元素
+				this.stickthree.nativeElement//获取html中标记为three的元素
+			})
+		})
+	}

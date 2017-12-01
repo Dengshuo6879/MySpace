@@ -1,0 +1,32 @@
+第一种：
+	用id获取模板中content中最高的那个元素，给元素设置id：
+	id='topest'
+	
+	然后触发方法：
+	toView(){
+		let element = document.getElementById('topest');
+		if(element){
+			element.scrollIntoView();
+		}
+	}
+	这种方式是通过锚点直接跳到该元素的，效果不是很好；
+	
+第二种：
+
+	首先导入
+	import {Content} from 'ionic-angular';
+	
+	然后获取content的实例：
+	@ViewChild(Content) content:Content;
+	
+	然后调用content的scrollToTop()：
+	toTop(){
+		this.content.scrollToTop();
+	}
+	
+第三种：
+	
+	基于第二种方法，滚动到指定坐标位置，设置三个参数，依次为坐标x，y，滚动时间(毫秒单位)：
+	scrollTo(){
+		this.content.scrollTo(0,0,300)
+	}

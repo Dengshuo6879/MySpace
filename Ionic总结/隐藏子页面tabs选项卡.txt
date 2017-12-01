@@ -1,0 +1,33 @@
+第一种： 隐藏全部子页面的tabs选项界面
+　　找到app.module.ts文件 ，修改如下代码
+imports: [
+    IonicModule.forRoot(MyApp,{
+      tabsHideOnSubPages: 'true'         //隐藏全部子页面tabs
+    })
+  ],
+ 
+第二种：隐藏某个子页面的tabs ;   缺点：当子页面使用pop()方法退出时，父页面的任何事件都不响应。
+ 	
+import{ App } from 'ionic-angular';          //1.引入App类
+constructor(privateapp:App) {}                 //2.声明初始化app对象
+this.app.getRootNav().push(nextPage);      //3.调用this.app.getRootNav() 从根页面跳转就可以了
+　　
+第三种：隐藏某个子页面的tabs；   缺点：暂无
+//当页面进入初始化的时候
+    letelements = document.querySelectorAll(".tabbar");
+    if(elements != null) {
+        Object.keys(elements).map((key) => {
+            elements[key].style.display ='none';
+        });
+    }   
+ 
+ 
+  //当退出页面的时候
+ionViewWillLeave() {
+    letelements = document.querySelectorAll(".tabbar");
+    if(elements != null) {
+        Object.keys(elements).map((key) => {
+            elements[key].style.display ='flex';
+        });
+    }
+}   
